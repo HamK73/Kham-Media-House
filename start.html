@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Your Authority Blueprint™ — Kham Media House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:     #090B0F;
+      --deep:      #0E1118;
+      --surface:   #141720;
+      --edge:      #1E2330;
+      --line:      #252B3A;
+      --muted:     #4A5168;
+      --secondary: #8A92A8;
+      --primary:   #C8CDD8;
+      --white:     #F0F2F6;
+      --gold:      #C9A84C;
+      --gold-dim:  #8A6B2A;
+      --gold-bg:   rgba(201,168,76,0.06);
+      --success:   #3DAA6A;
+      --success-bg: rgba(61,170,106,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(9,11,15,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wordmark {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-size: 12px;
+      color: var(--secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
+    }
+
+    /* ── HEADER ── */
+    .page-header { margin-bottom: 56px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .page-sub {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--secondary);
+      max-width: 520px;
+    }
+
+    /* ── PROGRESS ── */
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      background: var(--line);
+      border-radius: 2px;
+      margin-bottom: 48px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── FORM STEPS ── */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .step-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .step-question {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .step-purpose {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    textarea, input[type="text"], input[type="email"] {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 16px 20px;
+      resize: vertical;
+      transition: border-color 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    textarea { min-height: 120px; }
+
+    textarea:focus, input:focus {
+      border-color: var(--gold-dim);
+      background: var(--deep);
+    }
+
+    textarea::placeholder, input::placeholder {
+      color: var(--muted);
+    }
+
+    /* CTA options */
+    .cta-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .cta-option {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 3px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--secondary);
+    }
+
+    .cta-option:hover {
+      border-color: var(--gold-dim);
+      color: var(--white);
+    }
+
+    .cta-option.selected {
+      border-color: var(--gold);
+      background: var(--gold-bg);
+      color: var(--white);
+    }
+
+    .cta-option-dot {
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--muted);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .cta-option.selected .cta-option-dot {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .cta-other-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* Questions list for content sources */
+    .questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .question-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .question-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      width: 20px;
+      flex-shrink: 0;
+    }
+
+    .question-input-wrap input {
+      flex: 1;
+      min-height: unset;
+      padding: 12px 16px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+    }
+
+    .btn-next {
+      background: var(--gold);
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-next:hover { background: var(--white); }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .btn-back {
+      background: transparent;
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 14px 0;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-back:hover { color: var(--white); }
+
+    /* ── CONFIRMATION ── */
+    #confirmation { display: none; text-align: center; padding: 48px 0; }
+
+    .confirm-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--success);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      background: var(--success-bg);
+    }
+
+    .confirm-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--success);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .confirm-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .confirm-title em { font-style: italic; color: var(--gold); }
+
+    .confirm-body {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--secondary);
+      max-width: 440px;
+      margin: 0 auto 36px;
+    }
+
+    .confirm-detail {
+      display: inline-block;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 3px;
+      padding: 20px 32px;
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 1.8;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .confirm-detail strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .btn-home {
+      display: inline-block;
+      border: 1px solid var(--line);
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-home:hover { border-color: var(--secondary); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .page { padding: 100px 20px 60px; }
+      .cta-options { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-wordmark">Kham Media House</a>
+  <a href="/" class="nav-back">← Back to site</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="eyebrow">Authority Blueprint™</div>
+    <h1>Tell Us About<br>Your <em>Expertise.</em></h1>
+    <p class="page-sub">Answer seven questions about your audience, offer, and goals. We'll build your personalized Authority Blueprint™ and reach out within 24 hours.</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div id="progress-section">
+    <div class="progress-label">
+      <span id="step-label">Step 1 of 7</span>
+      <span id="step-pct">14%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:14%"></div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="intake-form">
+
+    <!-- STEP 1 — NAME -->
+    <div class="step active" id="step-1">
+      <div class="step-eyebrow">Getting Started</div>
+      <div class="step-question">What's your name and business?</div>
+      <div class="step-purpose">So we know who the Authority Blueprint™ is being built for.</div>
+      <input type="text" id="name" placeholder="e.g. Ratcliff Thomas — Gridiron GIC" autocomplete="name">
+      <div class="btn-row">
+        <span></span>
+        <button type="button" class="btn-next" onclick="nextStep(1)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 — HOOK -->
+    <div class="step" id="step-2">
+      <div class="step-eyebrow">H — Hook</div>
+      <div class="step-question">What is the biggest problem, mistake, or opportunity your audience faces?</div>
+      <div class="step-purpose">This becomes the foundation for content that stops the scroll.</div>
+      <textarea id="hook" placeholder="e.g. Most young athletes and their families don't understand how the recruiting process actually works until it's too late..."></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(2)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(2)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 — EMOTION -->
+    <div class="step" id="step-3">
+      <div class="step-eyebrow">E — Emotion</div>
+      <div class="step-question">Why does this problem matter? What happens if they do nothing?</div>
+      <div class="step-purpose">This identifies the urgency and stakes behind your content.</div>
+      <textarea id="emotion" placeholder="e.g. A college scholarship can change a family's financial future entirely. If they do nothing, athletes age out of their recruiting window without ever getting a real look..."></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(3)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 — MESSAGE -->
+    <div class="step" id="step-4">
+      <div class="step-eyebrow">M — Message</div>
+      <div class="step-question">What do you do, who do you help, and what result do you deliver?</div>
+      <div class="step-purpose">This defines your authority positioning and the transformation you create.</div>
+      <textarea id="message" placeholder="e.g. I'm a former NFL player and I run a youth football program in Charlotte. I help young athletes and their families navigate the recruiting process and develop the character college coaches actually look for..."></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(4)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(4)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5 — CTA -->
+    <div class="step" id="step-5">
+      <div class="step-eyebrow">C — Call To Action</div>
+      <div class="step-question">What action should viewers take after watching your content?</div>
+      <div class="step-purpose">Every video ends with one clear direction. Choose the one that fits your offer.</div>
+      <div class="cta-options">
+        <div class="cta-option" onclick="selectCTA(this, 'Submit Application')">
+          <div class="cta-option-dot"></div>Submit Application
+        </div>
+        <div class="cta-option" onclick="selectCTA(this, 'Start A Project')">
+          <div class="cta-option-dot"></div>Start A Project
+        </div>
+        <div class="cta-option" onclick="selectCTA(this, 'Visit Website')">
+          <div class="cta-option-dot"></div>Visit Website
+        </div>
+        <div class="cta-option" onclick="selectCTA(this, 'Book A Call')">
+          <div class="cta-option-dot"></div>Book A Call
+        </div>
+        <div class="cta-option" onclick="selectCTA(this, 'Join The Program')">
+          <div class="cta-option-dot"></div>Join The Program
+        </div>
+        <div class="cta-option" onclick="selectCTA(this, 'Purchase Offer')">
+          <div class="cta-option-dot"></div>Purchase Offer
+        </div>
+      </div>
+      <div class="cta-other-label">Or describe your own:</div>
+      <input type="text" id="cta" placeholder="e.g. Download the free guide">
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(5)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(5)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 6 — CONTENT SOURCES -->
+    <div class="step" id="step-6">
+      <div class="step-eyebrow">Content Source Material</div>
+      <div class="step-question">What are the 5 most common questions people ask you?</div>
+      <div class="step-purpose">These become your first five authority video topics.</div>
+      <div class="questions-list">
+        <div class="question-input-wrap">
+          <span class="question-num">Q1</span>
+          <input type="text" id="q1" placeholder="e.g. When should my child start thinking about college recruiting?">
+        </div>
+        <div class="question-input-wrap">
+          <span class="question-num">Q2</span>
+          <input type="text" id="q2" placeholder="e.g. What do college coaches actually look for beyond athletic ability?">
+        </div>
+        <div class="question-input-wrap">
+          <span class="question-num">Q3</span>
+          <input type="text" id="q3" placeholder="e.g. How do I build a recruiting profile that gets noticed?">
+        </div>
+        <div class="question-input-wrap">
+          <span class="question-num">Q4</span>
+          <input type="text" id="q4" placeholder="Your fourth most common question">
+        </div>
+        <div class="question-input-wrap">
+          <span class="question-num">Q5</span>
+          <input type="text" id="q5" placeholder="Your fifth most common question">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(6)">← Back</button>
+        <button type="button" class="btn-next" onclick="nextStep(6)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 7 — DIFFERENTIATOR + EMAIL -->
+    <div class="step" id="step-7">
+      <div class="step-eyebrow">Optional — Differentiator</div>
+      <div class="step-question">What makes your background or approach different from others in your field?</div>
+      <div class="step-purpose">This surfaces your unique authority angles and founder story. Skip it if nothing comes to mind.</div>
+      <textarea id="differentiator" placeholder="e.g. I've lived both sides of this. I made it to the NFL. I've also watched talented kids from my own community never get a real shot because nobody taught them how the system works..." style="min-height:100px; margin-bottom: 20px;"></textarea>
+      <div class="step-eyebrow" style="margin-top:8px;">Your Email</div>
+      <div class="step-question" style="font-size:18px; margin-bottom:8px;">Where should we send your Authority Blueprint™?</div>
+      <input type="email" id="email" placeholder="your@email.com">
+      <div class="btn-row">
+        <button type="button" class="btn-back" onclick="prevStep(7)">← Back</button>
+        <button type="button" class="btn-next" onclick="submitForm()">Submit →</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- CONFIRMATION -->
+  <div id="confirmation">
+    <div class="confirm-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </div>
+    <div class="confirm-title">Blueprint <em>Submitted.</em></div>
+    <p class="confirm-body">Your intake is complete. We're building your Authority Blueprint™ and will have it in your inbox within 24 hours.</p>
+    <div class="confirm-detail">
+      <strong>What happens next:</strong><br>
+      1. Pharaoh processes your intake<br>
+      2. Your Authority Blueprint™ is generated<br>
+      3. We reach out within 24 hours<br>
+      4. If it's a fit — production begins
+    </div>
+    <br>
+    <a href="/" class="btn-home">← Back to Kham Media House</a>
+  </div>
+
+</div>
+
+<footer>
+  Authority Blueprint™ · Kham Media House · Confidential
+</footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 7;
+  let selectedCTA = '';
+
+  const stepData = {
+    1: { label: 'Getting Started', pct: 14 },
+    2: { label: 'H — Hook', pct: 28 },
+    3: { label: 'E — Emotion', pct: 42 },
+    4: { label: 'M — Message', pct: 57 },
+    5: { label: 'C — Call To Action', pct: 71 },
+    6: { label: 'Content Sources', pct: 85 },
+    7: { label: 'Final Step', pct: 100 },
+  };
+
+  function updateProgress(step) {
+    const d = stepData[step];
+    document.getElementById('step-label').textContent = `Step ${step} of ${totalSteps}`;
+    document.getElementById('step-pct').textContent = d.pct + '%';
+    document.getElementById('progress-fill').style.width = d.pct + '%';
+  }
+
+  function showStep(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + step).classList.add('active');
+    updateProgress(step);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep(from) {
+    if (from === 1 && !document.getElementById('name').value.trim()) {
+      document.getElementById('name').focus(); return;
+    }
+    if (from === 2 && !document.getElementById('hook').value.trim()) {
+      document.getElementById('hook').focus(); return;
+    }
+    if (from === 3 && !document.getElementById('emotion').value.trim()) {
+      document.getElementById('emotion').focus(); return;
+    }
+    if (from === 4 && !document.getElementById('message').value.trim()) {
+      document.getElementById('message').focus(); return;
+    }
+    if (from === 5 && !document.getElementById('cta').value.trim() && !selectedCTA) {
+      document.getElementById('cta').focus(); return;
+    }
+    if (from === 6 && !document.getElementById('q1').value.trim()) {
+      document.getElementById('q1').focus(); return;
+    }
+    currentStep = from + 1;
+    showStep(currentStep);
+  }
+
+  function prevStep(from) {
+    currentStep = from - 1;
+    showStep(currentStep);
+  }
+
+  function selectCTA(el, value) {
+    document.querySelectorAll('.cta-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedCTA = value;
+    document.getElementById('cta').value = value;
+  }
+
+  async function submitForm() {
+    const email = document.getElementById('email').value.trim();
+    if (!email) { document.getElementById('email').focus(); return; }
+
+    // Collect all data
+    const intake = {
+      name: document.getElementById('name').value,
+      hook: document.getElementById('hook').value,
+      emotion: document.getElementById('emotion').value,
+      message: document.getElementById('message').value,
+      cta: document.getElementById('cta').value,
+      q1: document.getElementById('q1').value,
+      q2: document.getElementById('q2').value,
+      q3: document.getElementById('q3').value,
+      q4: document.getElementById('q4').value,
+      q5: document.getElementById('q5').value,
+      differentiator: document.getElementById('differentiator').value,
+      email: email,
+      submitted: new Date().toISOString()
+    };
+
+    // Submit to Formspree
+    try {
+      const response = await fetch('https://formspree.io/f/mojzyzjn', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(intake)
+      });
+      if (!response.ok) throw new Error('Submission failed');
+    } catch (err) {
+      console.error('Formspree error:', err);
+    }
+
+    // Show confirmation
+    document.getElementById('intake-form').style.display = 'none';
+    document.getElementById('progress-section').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

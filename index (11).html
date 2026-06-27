@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kham Media House — Turning Expertise Into Visible Authority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #090B0F;
+      --deep:     #0E1118;
+      --surface:  #141720;
+      --line:     #1E2330;
+      --line2:    #252B3A;
+      --muted:    #4A5168;
+      --secondary:#8A92A8;
+      --primary:  #C8CDD8;
+      --white:    #F0F2F6;
+      --gold:     #C9A84C;
+      --gold-dim: #8A6B2A;
+      --gold-bg:  rgba(201,168,76,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      background: rgba(9,11,15,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-wordmark {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--secondary);
+      text-decoration: none;
+      padding: 8px 16px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      padding: 8px 20px;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-inner { max-width: 900px; position: relative; }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--secondary);
+      max-width: 480px;
+      margin-bottom: 52px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--white); }
+
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid var(--line2);
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 16px 36px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--secondary); color: var(--white); }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 96px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .services-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 48px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .service-card {
+      background: var(--deep);
+      padding: 40px 36px;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: var(--surface); }
+
+    .service-name {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--secondary);
+    }
+
+    /* ── FEATURED VIDEO ── */
+    .featured {
+      padding: 96px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .featured-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .featured-video-wrap {
+      background: var(--deep);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .featured-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .video-play-icon {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-play-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--gold);
+      margin-left: 3px;
+    }
+
+    .video-placeholder-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .featured-content { }
+
+    .featured-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .featured-title em { font-style: italic; color: var(--gold); }
+
+    .featured-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--secondary);
+      margin-bottom: 32px;
+    }
+
+    .featured-meta {
+      display: flex;
+      gap: 24px;
+    }
+
+    .featured-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    /* ── PORTFOLIO PREVIEW ── */
+    .preview {
+      padding: 96px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .preview-inner { max-width: 900px; margin: 0 auto; }
+
+    .preview-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .preview-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .preview-header h2 em { font-style: italic; color: var(--gold); }
+
+    .view-all {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: gap 0.2s;
+    }
+    .view-all:hover { gap: 10px; }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .preview-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: border-color 0.2s;
+      display: block;
+    }
+    .preview-card:hover { border-color: var(--muted); }
+
+    .preview-thumb {
+      aspect-ratio: 9/16;
+      background: var(--deep);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .preview-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-ph-1 { background: linear-gradient(135deg, #1a1008 0%, #3a2408 100%); }
+    .thumb-ph-2 { background: linear-gradient(135deg, #0d0f1a 0%, #1a1f35 100%); }
+    .thumb-ph-3 { background: linear-gradient(135deg, #0f1a12 0%, #1f3524 100%); }
+    .thumb-ph-4 { background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 100%); }
+    .thumb-ph-5 { background: linear-gradient(135deg, #1a0d0d 0%, #351515 100%); }
+    .thumb-ph-6 { background: linear-gradient(135deg, #0f1f1a 0%, #1a3528 100%); }
+
+    .thumb-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .preview-meta {
+      padding: 14px 16px;
+    }
+
+    .preview-service {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .preview-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 120px 48px;
+      text-align: center;
+    }
+
+    .final-cta-inner { max-width: 560px; margin: 0 auto; }
+
+    .final-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .final-cta h2 em { font-style: italic; color: var(--gold); }
+
+    .final-cta p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--secondary);
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 48px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-wordmark {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-link { display: none; }
+      .hero { padding: 100px 24px 64px; min-height: auto; padding-top: 120px; }
+      .services { padding: 64px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .featured { padding: 64px 24px; }
+      .featured-grid { grid-template-columns: 1fr; gap: 40px; }
+      .featured-video-wrap { aspect-ratio: 16/9; }
+      .preview { padding: 64px 24px; }
+      .preview-grid { grid-template-columns: repeat(2, 1fr); }
+      .preview-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .final-cta { padding: 80px 24px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+      .btn-ghost { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-wordmark">Kham Media House</a>
+  <div class="nav-right">
+    <a href="/portfolio.html" class="nav-link">Portfolio Gallery</a>
+    <a href="/start" class="nav-cta">Start Your Blueprint™</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Authority Media</div>
+    <h1 class="hero-headline">Turning Expertise Into<br><em>Visible Authority.</em></h1>
+    <p class="hero-sub">Professional studio visuals, authority videos, and websites for founders, coaches, and businesses ready to be seen.</p>
+    <div class="hero-actions">
+      <a href="/portfolio.html" class="btn-ghost">View Portfolio</a>
+      <a href="/start" class="btn-primary">Start Your Authority Blueprint™ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-inner">
+    <div class="section-label">What We Build</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-name">VibeLoop™</div>
+        <div class="service-title">Professional Studio Pictures</div>
+        <p class="service-desc">High-impact visual identity assets that capture attention and establish brand presence.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-name">CineAuthority™</div>
+        <div class="service-title">Authority Videos &amp; Commercials</div>
+        <p class="service-desc">Founder-led short-form video and cinematic commercials that build trust and drive action.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-name">AuthorityHub™</div>
+        <div class="service-title">Websites &amp; Landing Pages</div>
+        <p class="service-desc">Clean, conversion-focused digital presence that turns visibility into opportunity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED VIDEO -->
+<section class="featured">
+  <div class="featured-inner">
+    <div class="section-label">Featured Work</div>
+    <div class="featured-grid">
+      <div class="featured-video-wrap">
+        <video style="width:100%;height:100%;object-fit:cover;" controls preload="metadata">
+          <source src="/videos/kmh-spopt.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="featured-content">
+        <div class="featured-tag">CineAuthority™ · TV Spot</div>
+        <h2 class="featured-title">Turning Expertise Into<br><em>Visible Authority.</em></h2>
+        <p class="featured-desc">A cinematic brand introduction demonstrating what Kham Media House builds for founders, coaches, and businesses ready to be seen.</p>
+        <div class="featured-meta">
+          <div class="featured-meta-item">
+            <span class="meta-label">Service</span>
+            <span class="meta-value">CineAuthority™</span>
+          </div>
+          <div class="featured-meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-value">TV Spot</span>
+          </div>
+          <div class="featured-meta-item">
+            <span class="meta-label">Duration</span>
+            <span class="meta-value">30 seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO PREVIEW -->
+<section class="preview">
+  <div class="preview-inner">
+    <div class="preview-header">
+      <h2>Recent <em>Work.</em></h2>
+      <a href="/portfolio.html" class="view-all">View full portfolio →</a>
+    </div>
+    <div class="preview-grid">
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-1">
+          <span class="thumb-label">KMH Brand Intro</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">CineAuthority™ · TV Spot</div>
+          <div class="preview-title">KMH Brand Intro</div>
+        </div>
+      </a>
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-2">
+          <span class="thumb-label">Founder Authority</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">CineAuthority™ · UGC Tutorial</div>
+          <div class="preview-title">Why Expertise Isn't Enough</div>
+        </div>
+      </a>
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-3">
+          <span class="thumb-label">TSOFAVI™ Lifestyle</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">VibeLoop™ · UGC Virtual Try On</div>
+          <div class="preview-title">TSOFAVI™ Lifestyle</div>
+        </div>
+      </a>
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-4">
+          <span class="thumb-label">TSOFAVI™ Product</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">VibeLoop™ · Hyper Motion</div>
+          <div class="preview-title">TSOFAVI 202™ Showcase</div>
+        </div>
+      </a>
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-5">
+          <span class="thumb-label">Client Transformation</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">CineAuthority™ · Product Review</div>
+          <div class="preview-title">I'm Not Invisible Anymore</div>
+        </div>
+      </a>
+      <a href="/portfolio.html" class="preview-card">
+        <div class="preview-thumb thumb-ph-6">
+          <span class="thumb-label">More Coming Soon</span>
+        </div>
+        <div class="preview-meta">
+          <div class="preview-service">Kham Media House</div>
+          <div class="preview-title">View Full Portfolio →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Ready To Become<br><em>More Visible?</em></h2>
+    <p>Start with your free Authority Blueprint™. Answer a few questions about your expertise and audience — we'll show you exactly what your authority media could look like.</p>
+    <a href="/start" class="btn-primary">Start Your Authority Blueprint™ →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-wordmark">Kham Media House</span>
+  <span class="footer-copy">© 2026 Kham Media House. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

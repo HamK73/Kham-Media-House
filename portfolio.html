@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -43,7 +43,6 @@
     .card { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; transition: border-color 0.2s; }
     .card:hover { border-color: var(--muted); }
     .card-video { width: 100%; aspect-ratio: 9/16; background: var(--deep); display: block; object-fit: cover; }
-    .card-video.landscape { aspect-ratio: 16/9; }
     .card-meta { padding: 14px 16px; }
     .card-type { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
     .card-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
@@ -93,7 +92,6 @@
 
 <div class="gallery-wrap">
 
-  <!-- CINEAUTHORITY -->
   <div class="gallery-section" data-filter="cineauthority">
     <div class="gallery-section-header">
       <div class="section-tag">CineAuthority™</div>
@@ -101,9 +99,8 @@
       <div class="section-desc">Founder-led content designed to build trust, demonstrate expertise, and drive action.</div>
     </div>
     <div class="gallery-grid">
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/kmh-spopt.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -112,9 +109,8 @@
           <div class="card-desc">Cinematic brand introduction for Kham Media House.</div>
         </div>
       </div>
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/kmh-intro.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -123,9 +119,8 @@
           <div class="card-desc">Authority brand statement for founders and coaches.</div>
         </div>
       </div>
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/authority-teaching1.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -134,9 +129,8 @@
           <div class="card-desc">Authority teaching content for founders and coaches.</div>
         </div>
       </div>
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/authority-teaching2.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -145,11 +139,9 @@
           <div class="card-desc">Trust-building content demonstrating real results.</div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- VIBELOOP -->
   <div class="gallery-section" data-filter="vibeloop">
     <div class="gallery-section-header">
       <div class="section-tag">VibeLoop™</div>
@@ -157,9 +149,8 @@
       <div class="section-desc">High-impact visual brand content designed to capture attention and establish presence.</div>
     </div>
     <div class="gallery-grid">
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/executive-athlete-walk1.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -168,9 +159,8 @@
           <div class="card-desc">Executive athlete lifestyle content for TSOFAVI™ luxury golf street wear.</div>
         </div>
       </div>
-
       <div class="card">
-        <video class="card-video" controls preload="metadata" poster="">
+        <video class="card-video" controls preload="metadata">
           <source src="/videos/executive-athlete-walk2.mp4" type="video/mp4">
         </video>
         <div class="card-meta">
@@ -179,7 +169,6 @@
           <div class="card-desc">High-energy product highlight for the TSOFAVI 202™ sneaker.</div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -211,3 +200,5 @@ function filter(type, btn) {
 
 </body>
 </html>
+
+

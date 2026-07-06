@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kham Media House — Turning Expertise Into Visible Authority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:#090B0F; --deep:#0E1118; --surface:#141720; --line:#1E2330;
+      --line2:#252B3A; --muted:#4A5168; --secondary:#8A92A8; --primary:#C8CDD8;
+      --white:#F0F2F6; --gold:#C9A84C; --gold-dim:#8A6B2A;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--primary); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(9,11,15,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav-wordmark { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-link { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--secondary); text-decoration: none; padding: 8px 16px; transition: color 0.2s; }
+    .nav-link:hover { color: var(--white); }
+    .nav-client { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--secondary); text-decoration: none; border: 1px solid var(--line2); padding: 8px 20px; border-radius: 2px; transition: all 0.2s; }
+    .nav-client:hover { border-color: var(--secondary); color: var(--white); }
+    .nav-cta { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dim); padding: 8px 20px; border-radius: 2px; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* HERO */
+    .hero { padding: 120px 48px 64px; border-bottom: 1px solid var(--line); max-width: 900px; margin: 0 auto; }
+    .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold-dim); }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 400; line-height: 1.05; color: var(--white); margin-bottom: 16px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: 16px; line-height: 1.7; color: var(--secondary); max-width: 480px; margin-bottom: 36px; font-weight: 300; }
+    .hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--gold); color: var(--black); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 32px; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+    .btn-primary:hover { background: var(--white); }
+    .btn-ghost { display: inline-block; border: 1px solid var(--line2); color: var(--secondary); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; padding: 14px 32px; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--secondary); color: var(--white); }
+
+    /* SERVICES */
+    .services { padding: 64px 48px; border-bottom: 1px solid var(--line); }
+    .services-inner { max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .service-card { background: var(--deep); padding: 32px 28px; }
+    .service-name { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .service-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: var(--white); margin-bottom: 10px; line-height: 1.2; }
+    .service-desc { font-size: 13px; line-height: 1.7; color: var(--secondary); }
+
+    /* GALLERY */
+    .filter-wrap { max-width: 900px; margin: 0 auto; padding: 48px 48px 0; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid var(--line); }
+    .filter-btn { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; padding: 12px 24px; border: none; background: transparent; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+    .filter-btn:hover { color: var(--primary); }
+    .filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .gallery-wrap { max-width: 900px; margin: 0 auto; padding: 64px 48px; }
+    .gallery-section { margin-bottom: 64px; }
+    .gallery-section.hidden { display: none; }
+    .gallery-section-header { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .section-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: var(--white); margin-bottom: 4px; }
+    .section-desc { font-size: 13px; color: var(--secondary); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; transition: border-color 0.2s; }
+    .card:hover { border-color: var(--muted); }
+    .card-embed { width: 100%; aspect-ratio: 9/16; background: var(--deep); }
+    .card-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+    .card-meta { padding: 14px 16px; }
+    .card-type { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .card-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* CTA */
+    .final-cta { border-top: 1px solid var(--line); padding: 96px 48px; text-align: center; }
+    .final-cta-inner { max-width: 520px; margin: 0 auto; }
+    .final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    .final-cta h2 em { font-style: italic; color: var(--gold); }
+    .final-cta p { font-size: 15px; line-height: 1.7; color: var(--secondary); margin-bottom: 36px; font-weight: 300; }
+
+    /* FOOTER */
+    footer { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); }
+    .footer-wordmark { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .footer-copy { font-size: 11px; color: var(--muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 100px 20px 48px; }
+      .services { padding: 48px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .filter-wrap { padding: 32px 20px 0; overflow-x: auto; }
+      .gallery-wrap { padding: 48px 20px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .final-cta { padding: 64px 20px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    }
+
+    /* PRICING */
+    .pricing { padding: 80px 48px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .pricing-inner { max-width: 900px; margin: 0 auto; }
+    .pricing-sub { font-size: 14px; color: var(--secondary); margin-bottom: 48px; margin-top: -20px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 40px; }
+    .pricing-card { background: var(--deep); padding: 36px 28px; display: flex; flex-direction: column; }
+    .pricing-card-featured { background: var(--surface); }
+    .pricing-name { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .pricing-headline { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 400; color: var(--white); line-height: 1.3; margin-bottom: 14px; }
+    .pricing-desc { font-size: 13px; line-height: 1.7; color: var(--secondary); margin-bottom: 24px; }
+    .pricing-best { margin-bottom: 24px; flex: 1; }
+    .pricing-best-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .pricing-best ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .pricing-best ul li { font-size: 13px; color: var(--secondary); display: flex; align-items: center; gap: 8px; }
+    .pricing-best ul li::before { content: ''; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    .pricing-price { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--white); margin-bottom: 6px; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-wordmark">Kham Media House</a>
+  <div class="nav-right">
+    <a href="/portfolio.html" class="nav-link">Portfolio</a>
+    <a href="https://elite-authority-flow.base44.app" target="_blank" class="nav-client">Client Login</a>
+    <a href="/start" class="nav-cta">Start Your Blueprint™</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Kham Media House</div>
+  <h1>Turning Expertise Into<br><em>Visible Authority.</em></h1>
+  <p class="hero-sub">We build the visual presence, authority content, and client infrastructure that serious businesses run on.</p>
+  <div class="hero-actions">
+    <a href="/start" class="btn-primary">Start Your Authority Blueprint™ →</a>
+    <a href="#work" class="btn-ghost">View Our Work</a>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services">
+  <div class="services-inner">
+    <div class="section-label">What We Build</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-name">VibeLoop™</div>
+        <div class="service-title">Professional Studio Pictures</div>
+        <p class="service-desc">Visual content that positions your business as the obvious choice before anyone reads a single word.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-name">CineAuthority™</div>
+        <div class="service-title">Authority Videos &amp; Commercials</div>
+        <p class="service-desc">Authority content that turns expertise into credibility — and credibility into demand.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-name">AuthorityHub™</div>
+        <div class="service-title">Websites &amp; Landing Pages</div>
+        <p class="service-desc">The digital infrastructure serious businesses use to onboard, manage, and serve their clients.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div id="work" class="filter-wrap">
+  <button class="filter-btn active" onclick="filter('all', this)">All</button>
+  <button class="filter-btn" onclick="filter('cineauthority', this)">CineAuthority™</button>
+  <button class="filter-btn" onclick="filter('vibeloop', this)">VibeLoop™</button>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-wrap">
+
+  <div class="gallery-section" data-filter="cineauthority">
+    <div class="gallery-section-header">
+      <div class="section-tag">CineAuthority™</div>
+      <div class="section-title">Authority Videos &amp; Commercials</div>
+      <div class="section-desc">Founder-led content designed to build trust, demonstrate expertise, and drive action.</div>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/gQ9FYh6Pjww" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">CineAuthority™ · TV Spot</div>
+          <div class="card-name">KMH Brand Spot</div>
+          <div class="card-desc">Cinematic brand introduction for Kham Media House.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/p40GtApyevs" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">CineAuthority™ · TV Spot</div>
+          <div class="card-name">KMH Brand Intro</div>
+          <div class="card-desc">Authority brand statement for founders and coaches.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/4-Pew648OEY" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">CineAuthority™ · UGC Tutorial</div>
+          <div class="card-name">Why Expertise Isn't Enough</div>
+          <div class="card-desc">Authority teaching content for founders and coaches.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/Cp6G0Tlp1dc" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">CineAuthority™ · Product Review</div>
+          <div class="card-name">Client Transformation</div>
+          <div class="card-desc">Trust-building content demonstrating real results.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gallery-section" data-filter="vibeloop">
+    <div class="gallery-section-header">
+      <div class="section-tag">VibeLoop™</div>
+      <div class="section-title">Professional Studio &amp; Lifestyle Content</div>
+      <div class="section-desc">High-impact visual brand content designed to capture attention and establish presence.</div>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/7Cbdzhcp4LQ" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">VibeLoop™ · UGC Virtual Try On</div>
+          <div class="card-name">TSOFAVI™ Lifestyle</div>
+          <div class="card-desc">Executive athlete lifestyle content for TSOFAVI™ luxury golf street wear.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/eyM13prlftc" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">VibeLoop™ · Hyper Motion</div>
+          <div class="card-name">TSOFAVI™ Product Showcase</div>
+          <div class="card-desc">High-energy product highlight for the TSOFAVI 202™ sneaker.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-embed">
+          <iframe src="https://www.youtube.com/embed/vhoGMgQSJEQ" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="card-meta">
+          <div class="card-type">VibeLoop™ · UGC Virtual Try On</div>
+          <div class="card-name">TSOFAVI™ — From Airport To Course</div>
+          <div class="card-desc">The executive athlete in motion — from airport terminal to golf course clubhouse.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- PRICING -->
+<div class="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">KMH Project Pricing</div>
+    <p class="pricing-sub">Every project begins with your Authority Blueprint™.</p>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-name">VibeLoop™</div>
+        <div class="pricing-headline">Improves How Your Business Is Perceived</div>
+        <p class="pricing-desc">Visual content that makes your business look like the authority it is.</p>
+        <div class="pricing-best">
+          <div class="pricing-best-label">Best for</div>
+          <ul>
+            <li>Brand visuals</li>
+            <li>Professional images</li>
+            <li>Product visuals</li>
+            <li>Social media graphics</li>
+            <li>Thumbnail assets</li>
+          </ul>
+        </div>
+        <div class="pricing-price">Starting at $375</div>
+        
+      </div>
+
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-name">CineAuthority™</div>
+        <div class="pricing-headline">Builds Trust and Demand</div>
+        <p class="pricing-desc">Your expertise on screen. Your audience watching. Your credibility growing.</p>
+        <div class="pricing-best">
+          <div class="pricing-best-label">Best for</div>
+          <ul>
+            <li>Founder authority videos</li>
+            <li>Short-form social videos</li>
+            <li>TV-style spots</li>
+            <li>Product review content</li>
+            <li>Educational authority content</li>
+          </ul>
+        </div>
+        <div class="pricing-price">Starting at $750</div>
+        
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-name">AuthorityHub™</div>
+        <div class="pricing-headline">Improves How You Manage Clients</div>
+        <p class="pricing-desc">The workspace your clients log into. The system your business runs on.</p>
+        <div class="pricing-best">
+          <div class="pricing-best-label">Best for</div>
+          <ul>
+            <li>Client workspaces</li>
+            <li>Landing pages</li>
+            <li>Business websites</li>
+            <li>Project portals</li>
+            <li>Digital delivery systems</li>
+          </ul>
+        </div>
+        <div class="pricing-price">Starting at $1,250</div>
+        
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2>The Path Is<br><em>Clear.</em></h2>
+    <p>Every KMH engagement begins with your Authority Blueprint™. Your pathway is identified. Your project is defined. Production begins.</p>
+    <a href="/start" class="btn-primary">Start Your Authority Blueprint™ →</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-wordmark">Kham Media House</span>
+  <span class="footer-copy">© 2026 Kham Media House. All rights reserved.</span>
+</footer>
+
+<script>
+function filter(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-section').forEach(section => {
+    if (type === 'all') { section.classList.remove('hidden'); }
+    else { section.dataset.filter === type ? section.classList.remove('hidden') : section.classList.add('hidden'); }
+  });
+}
+</script>
+
+</body>
+</html>

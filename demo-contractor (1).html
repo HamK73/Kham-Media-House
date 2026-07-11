@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premier Home Solutions — Charlotte's Trusted Contractor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #E07B39;
+      --primary-dark: #B85E22;
+      --primary-bg: rgba(224,123,57,0.08);
+      --black: #0A0A0A;
+      --dark: #111111;
+      --surface: #1A1A1A;
+      --line: #2A2A2A;
+      --muted: #666666;
+      --secondary: #999999;
+      --text: #E8E8E8;
+      --white: #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(10,10,10,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav-brand { font-size: 16px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+    .nav-brand span { color: var(--primary); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { font-size: 13px; font-weight: 500; color: var(--secondary); }
+    .nav-cta { background: var(--primary); color: var(--white); font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--primary-dark); }
+    .hero { padding: 140px 48px 80px; border-bottom: 1px solid var(--line); max-width: 1000px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-bg); border: 1px solid var(--primary-dark); border-radius: 99px; padding: 6px 14px; font-size: 12px; font-weight: 500; color: var(--primary); margin-bottom: 28px; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1.1; color: var(--white); margin-bottom: 20px; }
+    h1 em { font-style: italic; color: var(--primary); }
+    .hero-sub { font-size: 17px; line-height: 1.7; color: var(--secondary); max-width: 520px; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary { display: inline-block; background: var(--primary); color: var(--white); font-size: 14px; font-weight: 600; padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-ghost { display: inline-block; border: 1px solid var(--line); color: var(--secondary); font-size: 14px; font-weight: 500; padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: var(--secondary); color: var(--white); }
+    .trust-bar { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid var(--line); }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--secondary); }
+    .trust-item strong { color: var(--white); }
+    .trust-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; flex-shrink: 0; }
+    section { padding: 80px 48px; border-bottom: 1px solid var(--line); }
+    .inner { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 32px; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 40px); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    h2 em { font-style: italic; color: var(--primary); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 40px; }
+    .svc { background: var(--surface); padding: 32px 28px; }
+    .svc-icon { font-size: 24px; margin-bottom: 16px; }
+    .svc-name { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .svc-desc { font-size: 13px; color: var(--secondary); line-height: 1.6; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 40px; }
+    .gallery-item { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .gallery-before-after { display: grid; grid-template-columns: 1fr 1fr; }
+    .gallery-img { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+    .gallery-before { background: #1a1210; color: #8a6a5a; border-right: 1px solid var(--line); }
+    .gallery-after { background: #141a10; color: var(--primary); }
+    .gallery-caption { padding: 12px 14px; font-size: 12px; color: var(--secondary); }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 40px; }
+    .stat { background: var(--surface); padding: 28px 24px; text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 400; color: var(--primary); margin-bottom: 6px; }
+    .stat-label { font-size: 12px; color: var(--secondary); }
+    .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .review { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 24px; }
+    .review-stars { color: var(--primary); font-size: 14px; margin-bottom: 12px; }
+    .review-text { font-size: 14px; color: var(--secondary); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .review-author { font-size: 13px; font-weight: 500; color: var(--white); }
+    .review-location { font-size: 12px; color: var(--muted); }
+    .area-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .area-tag { background: var(--surface); border: 1px solid var(--line); border-radius: 99px; padding: 8px 16px; font-size: 13px; color: var(--secondary); }
+    .portal-section { background: var(--primary-bg); border: 1px solid var(--primary-dark); border-radius: 8px; padding: 40px; margin-top: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .portal-text h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: var(--white); margin-bottom: 8px; }
+    .portal-text p { font-size: 14px; color: var(--secondary); max-width: 400px; }
+    .btn-portal { background: var(--primary); color: var(--white); font-size: 13px; font-weight: 600; padding: 14px 28px; border-radius: 4px; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+    .btn-portal:hover { background: var(--primary-dark); }
+    .final-cta { padding: 96px 48px; text-align: center; }
+    .final-cta h2 { margin-bottom: 16px; }
+    .final-cta p { font-size: 15px; color: var(--secondary); margin-bottom: 40px; }
+    .form-row { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+    .form-input { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 14px 18px; font-size: 14px; color: var(--white); font-family: 'Inter', sans-serif; min-width: 200px; }
+    .form-input:focus { outline: none; border-color: var(--primary); }
+    .form-input::placeholder { color: var(--muted); }
+    .kmh-footer { background: var(--dark); border-top: 1px solid var(--line); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .kmh-credit { font-size: 12px; color: var(--muted); }
+    .kmh-credit a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    .kmh-tagline { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-phone { display: none; }
+      .hero { padding: 110px 20px 60px; }
+      section { padding: 56px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .portal-section { flex-direction: column; }
+      .final-cta { padding: 64px 20px; }
+      .kmh-footer { padding: 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Premier <span>Home</span> Solutions</div>
+  <div class="nav-right">
+    <span class="nav-phone">(704) 555-0182</span>
+    <a href="#estimate" class="nav-cta">Free Estimate</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="inner">
+    <div class="hero-badge">Licensed & Insured · Charlotte, NC</div>
+    <h1>Your Home.<br><em>Done Right.</em></h1>
+    <p class="hero-sub">Kitchen remodels, bathroom upgrades, and full home renovations. Quality craftsmanship. On-time delivery. No surprises on the final bill.</p>
+    <div class="hero-actions">
+      <a href="#estimate" class="btn-primary">Get A Free Estimate →</a>
+      <a href="/authorityhub-demo" class="btn-ghost">View Client Portal</a>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item"><div class="trust-dot"></div><strong>4.9★</strong> · 127 Reviews</div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>Licensed & Insured</strong></div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>15 Years</strong> Experience</div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>Free</strong> Estimates</div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>500+</strong> Projects Completed</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="inner">
+    <div class="section-label">What We Do</div>
+    <h2>Full-Service Home<br><em>Renovation.</em></h2>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon">🍳</div>
+        <div class="svc-name">Kitchen Remodels</div>
+        <p class="svc-desc">Full kitchen transformations from layout redesign to final finish. Cabinets, countertops, appliances, and everything between.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🚿</div>
+        <div class="svc-name">Bathroom Upgrades</div>
+        <p class="svc-desc">Modern bathroom renovations that add daily comfort and lasting home value. Walk-in showers, soaking tubs, custom tile work.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🏠</div>
+        <div class="svc-name">Full Home Renovations</div>
+        <p class="svc-desc">Whole-home renovation projects managed start to finish. One point of contact. One accountable team.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🪟</div>
+        <div class="svc-name">Windows & Doors</div>
+        <p class="svc-desc">Energy-efficient window and door replacement that improves comfort and reduces utility costs.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🏡</div>
+        <div class="svc-name">Deck & Outdoor</div>
+        <p class="svc-desc">Custom deck builds, pergolas, and outdoor living spaces designed for Charlotte's climate.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-name">Electrical & Plumbing</div>
+        <p class="svc-desc">Licensed electrical and plumbing work performed by certified professionals on every project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">Our Work</div>
+    <h2>Before & <em>After.</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-before-after">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030309_5491a4d5-fe7e-4038-bcaf-71886d6c1e54.png" style="width:50%;height:100%;object-fit:cover;"/><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030304_14dbd283-a023-492b-94aa-4030b998f9b1.png" style="width:50%;height:100%;object-fit:cover;"/>
+        </div>
+        <div class="gallery-caption">Kitchen Remodel · South Charlotte</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-before-after">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030309_5491a4d5-fe7e-4038-bcaf-71886d6c1e54.png" style="width:50%;height:100%;object-fit:cover;filter:saturate(0.5);"/><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030314_8a6ed034-90c9-4016-b6a9-cc5f0b508fb3.png" style="width:50%;height:100%;object-fit:cover;"/>
+        </div>
+        <div class="gallery-caption">Master Bathroom · Ballantyne</div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-before-after">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030309_5491a4d5-fe7e-4038-bcaf-71886d6c1e54.png" style="width:50%;height:100%;object-fit:cover;filter:brightness(0.7);"/><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260711_030304_14dbd283-a023-492b-94aa-4030b998f9b1.png" style="width:50%;height:100%;object-fit:cover;filter:brightness(1.1);"/>
+        </div>
+        <div class="gallery-caption">Full Renovation · Myers Park</div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
+      <div class="stat"><div class="stat-num">15</div><div class="stat-label">Years in Business</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">On-Time Completion</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">What Homeowners Say</div>
+    <h2>Real Results.<br><em>Real Reviews.</em></h2>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Our kitchen looks incredible. They finished on time and on budget. We've already referred three neighbors and they've all had the same experience."</p>
+        <div class="review-author">Jennifer M.</div>
+        <div class="review-location">South Charlotte · Kitchen Remodel</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professional from start to finish. No mess left behind. Clear communication throughout. This is the contractor you want for any serious project."</p>
+        <div class="review-author">Marcus T.</div>
+        <div class="review-location">Concord · Full Renovation</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"They transformed our outdated bathroom into something we're genuinely proud of. Came in under budget and finished three days early."</p>
+        <div class="review-author">Patricia W.</div>
+        <div class="review-location">Ballantyne · Bathroom Upgrade</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I've worked with three contractors before this one. None of them communicated like this team does. Every step was explained. Zero surprises."</p>
+        <div class="review-author">David R.</div>
+        <div class="review-location">Myers Park · Kitchen & Bath</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">Service Area</div>
+    <h2>Serving the<br><em>Charlotte Metro.</em></h2>
+    <p style="color:var(--secondary);font-size:14px;margin-top:8px;">We serve homeowners across the greater Charlotte area including:</p>
+    <div class="area-list">
+      <span class="area-tag">Charlotte</span>
+      <span class="area-tag">Concord</span>
+      <span class="area-tag">Huntersville</span>
+      <span class="area-tag">Ballantyne</span>
+      <span class="area-tag">Myers Park</span>
+      <span class="area-tag">Matthews</span>
+      <span class="area-tag">Mint Hill</span>
+      <span class="area-tag">Cornelius</span>
+      <span class="area-tag">Davidson</span>
+      <span class="area-tag">Mooresville</span>
+    </div>
+    <div class="portal-section">
+      <div class="portal-text">
+        <h3>Track Your Project Online</h3>
+        <p>Every Premier Home Solutions client gets access to a private project portal — upload your inspiration photos, monitor production status, review deliverables, and request changes from any device.</p>
+      </div>
+      <a href="/authorityhub-demo" class="btn-portal">View Client Portal Demo →</a>
+    </div>
+  </div>
+</section>
+
+<div id="estimate" class="final-cta">
+  <div class="inner">
+    <h2>Ready To Start Your<br><em>Project?</em></h2>
+    <p>Get a free estimate. No obligation. Response within 24 hours.</p>
+    <div class="form-row">
+      <input class="form-input" placeholder="Your name" />
+      <input class="form-input" placeholder="Phone number" />
+      <a href="#" class="btn-primary">Get Free Estimate →</a>
+    </div>
+  </div>
+</div>
+
+<div class="kmh-footer">
+  <div class="kmh-credit">Built by <a href="https://khammediahouse.com">Kham Media House</a></div>
+  <div class="kmh-tagline">Turning Expertise Into Visible Authority.</div>
+</div>
+
+</body>
+</html>

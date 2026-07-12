@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuthorityHub™ — Client Workspace Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:#090B0F; --deep:#0E1118; --surface:#141720; --line:#1E2330;
+      --line2:#252B3A; --muted:#4A5168; --secondary:#8A92A8; --primary:#C8CDD8;
+      --white:#F0F2F6; --gold:#C9A84C; --gold-dim:#8A6B2A; --gold-bg:rgba(201,168,76,0.07);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--primary); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .demo-banner { background: var(--gold-bg); border-bottom: 1px solid var(--gold-dim); padding: 10px 24px; text-align: center; font-size: 12px; color: var(--gold); letter-spacing: 0.04em; }
+    .demo-banner a { color: var(--gold); font-weight: 600; text-decoration: none; }
+    .app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+    .sidebar { background: var(--deep); border-right: 1px solid var(--line); padding: 32px 0; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .sidebar-brand { padding: 0 24px 32px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+    .sidebar-wordmark { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); }
+    .sidebar-sub { font-size: 11px; color: var(--gold); margin-top: 4px; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 10px 24px; font-size: 13px; font-weight: 500; color: var(--secondary); cursor: pointer; transition: all 0.15s; border-left: 2px solid transparent; text-decoration: none; }
+    .nav-item:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+    .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: var(--gold-bg); }
+    .nav-icon { font-size: 15px; width: 18px; text-align: center; }
+    .sidebar-footer { margin-top: auto; padding: 20px 24px; border-top: 1px solid var(--line); }
+    .client-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+    .client-role { font-size: 11px; color: var(--muted); }
+    .logout { font-size: 12px; color: var(--muted); text-decoration: none; margin-top: 10px; display: block; transition: color 0.2s; }
+    .logout:hover { color: var(--secondary); }
+    .main { padding: 48px; overflow-y: auto; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .page-header { margin-bottom: 40px; }
+    .page-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; color: var(--white); }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-sub { font-size: 14px; color: var(--secondary); margin-top: 6px; }
+    .status-track { display: flex; align-items: center; gap: 0; margin-top: 32px; }
+    .status-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    .status-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--muted); background: var(--deep); position: relative; z-index: 1; }
+    .status-dot.done { border-color: var(--gold); background: var(--gold-bg); color: var(--gold); }
+    .status-dot.active { border-color: var(--gold); background: var(--gold); color: var(--black); }
+    .status-label { font-size: 11px; color: var(--muted); text-align: center; }
+    .status-label.active { color: var(--gold); font-weight: 500; }
+    .status-line { height: 2px; flex: 1; background: var(--line); margin-top: -18px; }
+    .status-line.done { background: var(--gold-dim); }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+    .info-card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+    .info-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .info-card-value { font-size: 15px; font-weight: 500; color: var(--white); }
+    .info-card-detail { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .section-block { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 28px; margin-top: 20px; }
+    .section-block-title { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 99px; }
+    .badge-gold { background: var(--gold-bg); border: 1px solid var(--gold-dim); color: var(--gold); }
+    .badge-muted { background: var(--deep); border: 1px solid var(--line); color: var(--muted); }
+    .badge-green { background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.3); color: #2ECC71; }
+    .upload-zone { border: 1px dashed var(--line2); border-radius: 4px; padding: 32px; text-align: center; margin-top: 12px; }
+    .upload-zone-icon { font-size: 28px; margin-bottom: 10px; }
+    .upload-zone-text { font-size: 13px; color: var(--secondary); margin-bottom: 6px; }
+    .upload-zone-sub { font-size: 11px; color: var(--muted); }
+    .upload-btn { display: inline-block; margin-top: 14px; background: var(--surface); border: 1px solid var(--line2); color: var(--secondary); font-size: 12px; font-weight: 500; padding: 8px 20px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+    .upload-btn:hover { border-color: var(--secondary); color: var(--white); }
+    .uploaded-file { display: flex; align-items: center; gap: 12px; background: var(--deep); border: 1px solid var(--line); border-radius: 4px; padding: 12px 16px; margin-top: 10px; }
+    .file-icon { font-size: 18px; }
+    .file-name { font-size: 13px; font-weight: 500; color: var(--white); flex: 1; }
+    .file-status { font-size: 11px; color: var(--gold); }
+    .instruction-block { background: var(--gold-bg); border: 1px solid var(--gold-dim); border-radius: 4px; padding: 16px 18px; margin-bottom: 16px; }
+    .instruction-text { font-size: 13px; color: var(--primary); line-height: 1.6; }
+    .instruction-tips { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .instruction-tip { font-size: 12px; color: var(--secondary); display: flex; align-items: center; gap: 8px; }
+    .tip-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    .deliverable-row { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .deliverable-row:last-child { border-bottom: none; }
+    .deliverable-name { font-size: 13px; font-weight: 500; color: var(--white); flex: 1; }
+    .deliverable-type { font-size: 11px; color: var(--muted); }
+    .deliverable-actions { display: flex; gap: 8px; }
+    .btn-sm { font-size: 11px; font-weight: 500; padding: 6px 14px; border-radius: 2px; border: 1px solid var(--line2); color: var(--secondary); cursor: pointer; background: transparent; transition: all 0.2s; text-decoration: none; display: inline-block; }
+    .btn-sm:hover { border-color: var(--secondary); color: var(--white); }
+    .btn-sm-gold { border-color: var(--gold-dim); color: var(--gold); }
+    .btn-sm-gold:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .revision-form { margin-top: 20px; }
+    .form-label { font-size: 12px; font-weight: 500; color: var(--secondary); margin-bottom: 8px; display: block; }
+    .form-textarea { width: 100%; background: var(--deep); border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; font-size: 13px; color: var(--white); font-family: 'Inter', sans-serif; resize: vertical; min-height: 100px; }
+    .form-textarea:focus { outline: none; border-color: var(--gold-dim); }
+    .form-textarea::placeholder { color: var(--muted); }
+    .btn-submit { display: inline-block; margin-top: 12px; background: var(--gold); color: var(--black); font-size: 12px; font-weight: 600; padding: 10px 24px; border-radius: 2px; border: none; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .revision-history { margin-bottom: 24px; }
+    .revision-item { background: var(--deep); border: 1px solid var(--line); border-radius: 4px; padding: 16px; margin-bottom: 10px; }
+    .revision-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .revision-num { font-size: 11px; font-weight: 600; color: var(--gold); }
+    .revision-date { font-size: 11px; color: var(--muted); }
+    .revision-text { font-size: 13px; color: var(--secondary); }
+    .kmh-footer { border-top: 1px solid var(--line); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; }
+    .kmh-credit { font-size: 11px; color: var(--muted); }
+    .kmh-credit a { color: var(--gold); text-decoration: none; }
+    @media (max-width: 768px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: relative; height: auto; flex-direction: row; flex-wrap: wrap; padding: 16px; gap: 4px; }
+      .sidebar-brand { display: none; }
+      .nav-item { padding: 8px 12px; border-left: none; border-bottom: 2px solid transparent; font-size: 12px; }
+      .nav-item.active { border-left-color: transparent; border-bottom-color: var(--gold); }
+      .sidebar-footer { display: none; }
+      .main { padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .status-track { gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-banner">
+  This is a demo of the AuthorityHub™ client workspace. <a href="https://khammediahouse.com">Learn more about Kham Media House →</a>
+</div>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-wordmark">Kham Media House</div>
+      <div class="sidebar-sub">AuthorityHub™</div>
+    </div>
+    <a class="nav-item active" onclick="showPage('dashboard',this)">
+      <span class="nav-icon">⊞</span> Dashboard
+    </a>
+    <a class="nav-item" onclick="showPage('upload',this)">
+      <span class="nav-icon">↑</span> Upload Assets
+    </a>
+    <a class="nav-item" onclick="showPage('project',this)">
+      <span class="nav-icon">◈</span> Your Project
+    </a>
+    <a class="nav-item" onclick="showPage('revisions',this)">
+      <span class="nav-icon">↺</span> Revisions
+    </a>
+    <div class="sidebar-footer">
+      <div class="client-name">Sample Client</div>
+      <div class="client-role">Demo Workspace</div>
+      <a href="https://khammediahouse.com" class="logout">← Back to KMH</a>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page active">
+      <div class="page-header">
+        <div class="page-eyebrow">Client Workspace</div>
+        <div class="page-title">Welcome, <em>Sample Client.</em></div>
+        <p class="page-sub">Your project is in production. Here's your current status.</p>
+      </div>
+
+      <div class="status-track">
+        <div class="status-step">
+          <div class="status-dot done">✓</div>
+          <div class="status-label">Received</div>
+        </div>
+        <div class="status-line done"></div>
+        <div class="status-step">
+          <div class="status-dot active">▶</div>
+          <div class="status-label active">In Production</div>
+        </div>
+        <div class="status-line"></div>
+        <div class="status-step">
+          <div class="status-dot">◎</div>
+          <div class="status-label">Review</div>
+        </div>
+        <div class="status-line"></div>
+        <div class="status-step">
+          <div class="status-dot">✓</div>
+          <div class="status-label">Complete</div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="info-card">
+          <div class="info-card-label">Project</div>
+          <div class="info-card-value">Founder Authority Launch</div>
+          <div class="info-card-detail">CineAuthority™</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Status</div>
+          <div class="info-card-value" style="color:var(--gold);">In Production</div>
+          <div class="info-card-detail">Started July 8, 2026</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Deliverables</div>
+          <div class="info-card-value">3 Videos</div>
+          <div class="info-card-detail">1 ready for review</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">
+          Recent Activity
+        </div>
+        <div class="deliverable-row">
+          <span style="font-size:18px;">🎬</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">TV Spot — Draft 1</div>
+            <div class="deliverable-type">Ready for your review</div>
+          </div>
+          <span class="badge badge-gold">Ready</span>
+        </div>
+        <div class="deliverable-row">
+          <span style="font-size:18px;">📷</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">Assets Received</div>
+            <div class="deliverable-type">2 photos · 1 voice recording</div>
+          </div>
+          <span class="badge badge-green">Complete</span>
+        </div>
+        <div class="deliverable-row">
+          <span style="font-size:18px;">📋</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">Project Created</div>
+            <div class="deliverable-type">Authority Blueprint™ reviewed</div>
+          </div>
+          <span class="badge badge-green">Complete</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPLOAD ASSETS -->
+    <div id="page-upload" class="page">
+      <div class="page-header">
+        <div class="page-eyebrow">Asset Submission</div>
+        <div class="page-title">Upload Your <em>Assets.</em></div>
+        <p class="page-sub">Submit your photos and voice recording to begin production.</p>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">Photos <span class="badge badge-green">2/2 Uploaded</span></div>
+        <div class="instruction-block">
+          <div class="instruction-text">Upload two clear photos of yourself. Use a well-lit, front-facing photo with a clean background. These photos are used to build your avatar.</div>
+        </div>
+        <div class="uploaded-file">
+          <span class="file-icon">🖼️</span>
+          <span class="file-name">headshot-primary.jpg</span>
+          <span class="file-status">✓ Received</span>
+        </div>
+        <div class="uploaded-file">
+          <span class="file-icon">🖼️</span>
+          <span class="file-name">headshot-secondary.jpg</span>
+          <span class="file-status">✓ Received</span>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">Voice Recording <span class="badge badge-green">Uploaded</span></div>
+        <div class="instruction-block">
+          <div class="instruction-text">Record 30 seconds of yourself speaking naturally. Introduce yourself, describe your business, and speak to your audience as if you are on camera.</div>
+          <div class="instruction-tips">
+            <div class="instruction-tip"><div class="tip-dot"></div>Find a quiet room with no background noise</div>
+            <div class="instruction-tip"><div class="tip-dot"></div>Speak at your natural pace — do not rush</div>
+            <div class="instruction-tip"><div class="tip-dot"></div>You can record directly in the app or upload an existing recording</div>
+          </div>
+        </div>
+        <div class="uploaded-file">
+          <span class="file-icon">🎙️</span>
+          <span class="file-name">voice-recording-july8.mp3</span>
+          <span class="file-status">✓ Received</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUR PROJECT -->
+    <div id="page-project" class="page">
+      <div class="page-header">
+        <div class="page-eyebrow">CineAuthority™</div>
+        <div class="page-title">Founder Authority <em>Launch.</em></div>
+        <p class="page-sub">Your deliverables will appear here as production progresses.</p>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">Deliverables</div>
+
+        <div class="deliverable-row">
+          <span style="font-size:18px;">🎬</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">TV Spot — Brand Introduction</div>
+            <div class="deliverable-type">CineAuthority™ · 30 seconds</div>
+          </div>
+          <span class="badge badge-gold" style="margin-right:12px;">Ready</span>
+          <div class="deliverable-actions">
+            <a href="#" class="btn-sm">View</a>
+            <a href="#" class="btn-sm btn-sm-gold">Download</a>
+          </div>
+        </div>
+
+        <div class="deliverable-row">
+          <span style="font-size:18px;">🎥</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">Authority Tutorial — Why Expertise Isn't Enough</div>
+            <div class="deliverable-type">CineAuthority™ · UGC Tutorial · 45 seconds</div>
+          </div>
+          <span class="badge badge-muted" style="margin-right:12px;">In Production</span>
+          <div class="deliverable-actions">
+            <a href="#" class="btn-sm" style="opacity:0.4;pointer-events:none;">View</a>
+            <a href="#" class="btn-sm" style="opacity:0.4;pointer-events:none;">Download</a>
+          </div>
+        </div>
+
+        <div class="deliverable-row">
+          <span style="font-size:18px;">🎞️</span>
+          <div style="flex:1;">
+            <div class="deliverable-name">Client Transformation Story</div>
+            <div class="deliverable-type">CineAuthority™ · Product Review · 60 seconds</div>
+          </div>
+          <span class="badge badge-muted" style="margin-right:12px;">In Production</span>
+          <div class="deliverable-actions">
+            <a href="#" class="btn-sm" style="opacity:0.4;pointer-events:none;">View</a>
+            <a href="#" class="btn-sm" style="opacity:0.4;pointer-events:none;">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVISIONS -->
+    <div id="page-revisions" class="page">
+      <div class="page-header">
+        <div class="page-eyebrow">Revision Requests</div>
+        <div class="page-title">Request <em>Changes.</em></div>
+        <p class="page-sub">Describe what you'd like adjusted and we'll update your project.</p>
+      </div>
+
+      <div class="revision-history">
+        <div class="section-block-title" style="margin-bottom:16px;">Previous Requests</div>
+        <div class="revision-item">
+          <div class="revision-meta">
+            <span class="revision-num">Revision #1</span>
+            <span class="revision-date">July 9, 2026</span>
+            <span class="badge badge-green">Complete</span>
+          </div>
+          <div class="revision-text">Please adjust the pacing in the opening — hold on the wordmark for 2 more seconds before the first cut.</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-block-title">New Revision Request</div>
+        <div class="revision-form">
+          <label class="form-label">What would you like changed?</label>
+          <textarea class="form-textarea" placeholder="Describe the change you'd like made to your deliverable..."></textarea>
+          <button class="btn-submit">Submit Revision →</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="kmh-footer">
+  <div class="kmh-credit">Built by <a href="https://khammediahouse.com">Kham Media House</a> · Turning Expertise Into Visible Authority.</div>
+  <div style="font-size:11px;color:var(--muted);">Demo workspace — sample content only</div>
+</div>
+
+<script>
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iron Road Freight — Owner-Operator Trucking Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #3A7BD5;
+      --primary-dark: #2A5CA8;
+      --primary-bg: rgba(58,123,213,0.08);
+      --black: #080C12;
+      --dark: #0D1117;
+      --surface: #141B24;
+      --line: #1E2A38;
+      --muted: #4A5A6A;
+      --secondary: #8A9AAA;
+      --text: #D8E4F0;
+      --white: #F0F6FF;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(8,12,18,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav-brand { font-size: 16px; font-weight: 700; color: var(--white); letter-spacing: -0.01em; }
+    .nav-brand span { color: var(--primary); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-dot { width: 8px; height: 8px; background: #2ECC71; border-radius: 50%; flex-shrink: 0; }
+    .nav-status { font-size: 12px; color: var(--secondary); display: flex; align-items: center; gap: 6px; }
+    .nav-cta { background: var(--primary); color: var(--white); font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--primary-dark); }
+    .hero { padding: 140px 48px 80px; border-bottom: 1px solid var(--line); max-width: 1000px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-bg); border: 1px solid var(--primary-dark); border-radius: 99px; padding: 6px 14px; font-size: 12px; font-weight: 500; color: var(--primary); margin-bottom: 28px; }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: #2ECC71; border-radius: 50%; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1.1; color: var(--white); margin-bottom: 20px; }
+    h1 em { font-style: italic; color: var(--primary); }
+    .hero-sub { font-size: 17px; line-height: 1.7; color: var(--secondary); max-width: 520px; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary { display: inline-block; background: var(--primary); color: var(--white); font-size: 14px; font-weight: 600; padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .trust-bar { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid var(--line); }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--secondary); }
+    .trust-item strong { color: var(--white); }
+    .trust-dot { width: 6px; height: 6px; background: var(--primary); border-radius: 50%; flex-shrink: 0; }
+    section { padding: 80px 48px; border-bottom: 1px solid var(--line); }
+    .inner { max-width: 1000px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 32px; }
+    h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3vw, 40px); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    h2 em { font-style: italic; color: var(--primary); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 40px; }
+    .svc { background: var(--surface); padding: 32px 28px; }
+    .svc-icon { font-size: 24px; margin-bottom: 16px; }
+    .svc-name { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .svc-desc { font-size: 13px; color: var(--secondary); line-height: 1.6; }
+    .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .spec { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 24px; }
+    .spec-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; }
+    .spec-value { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .spec-detail { font-size: 13px; color: var(--secondary); }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 40px; }
+    .stat { background: var(--surface); padding: 28px 24px; text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 400; color: var(--primary); margin-bottom: 6px; }
+    .stat-label { font-size: 12px; color: var(--secondary); }
+    .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .review { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 24px; }
+    .review-stars { color: var(--primary); font-size: 14px; margin-bottom: 12px; }
+    .review-text { font-size: 14px; color: var(--secondary); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .review-author { font-size: 13px; font-weight: 500; color: var(--white); }
+    .review-location { font-size: 12px; color: var(--muted); }
+    .dot-number { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px 24px; margin-top: 32px; display: flex; align-items: center; gap: 16px; }
+    .dot-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .dot-value { font-size: 15px; font-weight: 600; color: var(--white); }
+    .final-cta { padding: 96px 48px; text-align: center; border-bottom: 1px solid var(--line); }
+    .final-cta h2 { margin-bottom: 16px; }
+    .final-cta p { font-size: 15px; color: var(--secondary); margin-bottom: 40px; }
+    .form-row { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; flex-wrap: wrap; }
+    .form-input { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 14px 18px; font-size: 14px; color: var(--white); font-family: 'Inter', sans-serif; min-width: 200px; }
+    .form-input:focus { outline: none; border-color: var(--primary); }
+    .form-input::placeholder { color: var(--muted); }
+    .kmh-footer { background: var(--dark); border-top: 1px solid var(--line); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .kmh-credit { font-size: 12px; color: var(--muted); }
+    .kmh-credit a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    .kmh-tagline { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-status { display: none; }
+      .hero { padding: 110px 20px 60px; }
+      section { padding: 56px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .final-cta { padding: 64px 20px; }
+      .kmh-footer { padding: 20px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Iron <span>Road</span> Freight</div>
+  <div class="nav-right">
+    <div class="nav-status"><div class="nav-dot"></div> Available for Loads</div>
+    <a href="#quote" class="nav-cta">Get A Quote</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="inner">
+    <div class="hero-badge">Owner-Operator · DOT Certified · Available Now</div>
+    <h1>Freight Moved.<br><em>On Time.</em></h1>
+    <p class="hero-sub">Reliable owner-operator freight services for businesses that can't afford delays. Regional and long-haul available. Direct communication. No middlemen. No excuses.</p>
+    <div class="hero-actions">
+      <a href="#quote" class="btn-primary">Request A Load Quote →</a>
+      <a href="/authorityhub-demo" class="btn-ghost" style="border-color:var(--line);color:var(--secondary);">View Client Portal</a>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item"><div class="trust-dot"></div><strong>DOT Certified</strong></div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>Fully Insured</strong></div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>98%</strong> On-Time Rate</div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>Real-Time</strong> Tracking</div>
+      <div class="trust-item"><div class="trust-dot"></div><strong>Direct</strong> Driver Communication</div>
+    </div>
+  </div>
+</div>
+
+
+<section>
+  <div class="inner">
+    <div class="section-label">Meet The Founder</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260712_130913_fec5acd2-7a97-42c1-9ff5-dcf9fb1db6f4.png" style="width:100%;border-radius:4px;object-fit:cover;aspect-ratio:2/3;" alt="Darius Webb portrait"/>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:400;color:var(--white);margin-bottom:6px;">Darius Webb</div>
+        <div style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--primary);margin-bottom:20px;">FOUNDER · IRON ROAD FREIGHT</div>
+        <p style="font-size:15px;line-height:1.8;color:var(--secondary);">Darius has logged over 450,000 miles across 48 states without a single safety violation. He started Iron Road Freight because he believed shippers deserved a direct relationship with the person moving their freight — not a broker, not a dispatcher, not a call center. Just the driver, the truck, and a commitment to delivery.</p>
+      </div>
+    </div>
+    <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3DOlffY9WTu1pURf796zNoM0zh4/hf_20260712_130918_1a883ef4-2523-4fa3-95a5-359353df7b38.png" style="width:100%;margin-top:24px;border-radius:4px;object-fit:cover;max-height:480px;" alt="Darius Webb lifestyle"/>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">Services</div>
+    <h2>What We<br><em>Haul.</em></h2>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon">🗺️</div>
+        <div class="svc-name">Regional Hauls</div>
+        <p class="svc-desc">Reliable delivery within the Southeast region. Same-day and next-day options available for time-sensitive freight.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🌎</div>
+        <div class="svc-name">Long Haul</div>
+        <p class="svc-desc">Cross-country freight with real-time GPS tracking and direct driver communication at every stage of the route.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">📅</div>
+        <div class="svc-name">Dedicated Lanes</div>
+        <p class="svc-desc">Consistent weekly lanes for repeat shippers. Priority scheduling, preferred rates, and guaranteed availability.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🏭</div>
+        <div class="svc-name">Dry Van</div>
+        <p class="svc-desc">Standard enclosed trailer for general freight, palletized goods, and temperature-stable cargo.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">❄️</div>
+        <div class="svc-name">Refrigerated</div>
+        <p class="svc-desc">Temperature-controlled transport for perishables and climate-sensitive freight. Monitored throughout transit.</p>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-name">Expedited</div>
+        <p class="svc-desc">Rush freight when time is critical. Direct routes, no relay, no delays. Call for availability and pricing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">Equipment</div>
+    <h2>The Iron Road<br><em>Fleet.</em></h2>
+    <div class="specs-grid">
+      <div class="spec">
+        <div class="spec-label">Tractor</div>
+        <div class="spec-value">Kenworth T680</div>
+        <div class="spec-detail">2022 model · ELD compliant · GPS equipped</div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Trailer</div>
+        <div class="spec-value">53ft Dry Van</div>
+        <div class="spec-detail">Load capacity: 45,000 lbs · Air ride suspension</div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Coverage</div>
+        <div class="spec-value">48 Contiguous States</div>
+        <div class="spec-detail">Southeast regional specialty · Long haul available</div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Insurance</div>
+        <div class="spec-value">$1M Liability · $100K Cargo</div>
+        <div class="spec-detail">Certificate available on request</div>
+      </div>
+    </div>
+    <div class="dot-number">
+      <div>
+        <div class="dot-label">USDOT Number</div>
+        <div class="dot-value">DOT #3847291</div>
+      </div>
+      <div style="margin-left:auto;">
+        <div class="dot-label">MC Number</div>
+        <div class="dot-value">MC-1284736</div>
+      </div>
+    </div>
+    <div class="stats-row" style="margin-top:24px;">
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">On-Time Delivery</div></div>
+      <div class="stat"><div class="stat-num">450K+</div><div class="stat-label">Miles Logged</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Years Operating</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Safety Violations</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <div class="section-label">What Shippers Say</div>
+    <h2>Built On<br><em>Reliability.</em></h2>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Never missed a pickup. Never missed a delivery window. This is the carrier we use exclusively for our Southeast lanes now."</p>
+        <div class="review-author">Operations Manager</div>
+        <div class="review-location">Atlanta Distribution Co.</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Direct line to the driver. Real updates. No broker runaround. Exactly what our supply chain needed. We've added three dedicated lanes."</p>
+        <div class="review-author">Supply Chain Director</div>
+        <div class="review-location">Carolina Logistics Group</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I've worked with brokers for years. Working direct with Iron Road has cut our freight costs and eliminated the communication delays entirely."</p>
+        <div class="review-author">Warehouse Manager</div>
+        <div class="review-location">Southeast Manufacturing Co.</div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Time-sensitive medical equipment delivered across three states without a single issue. Professional, communicative, and completely reliable."</p>
+        <div class="review-author">Logistics Coordinator</div>
+        <div class="review-location">MedSupply Southeast</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="inner">
+    <div class="section-label">Client Experience</div>
+    <h2>Your Load.<br><em>Your Portal.</em></h2>
+    <p style="color:var(--secondary);font-size:14px;margin-top:8px;margin-bottom:32px;">Every Iron Road Freight client gets a private portal — track your load in real time, upload shipping documents, review delivery confirmations, and communicate directly with your driver.</p>
+    <div style="background:var(--primary-bg);border:1px solid var(--primary-dark);border-radius:8px;padding:40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--white);margin-bottom:8px;">Track Your <em style='font-style:italic;color:var(--primary);'>Load.</em></div>
+        <p style="font-size:14px;color:var(--secondary);max-width:400px;">Real-time load status, document uploads, delivery confirmations, and direct driver communication — all in one organized workspace.</p>
+      </div>
+      <a href="/authorityhub-demo" style="background:var(--primary);color:var(--white);font-size:13px;font-weight:600;padding:14px 28px;border-radius:4px;text-decoration:none;white-space:nowrap;">View Client Portal Demo →</a>
+    </div>
+  </div>
+</section>
+
+<div id="quote" class="final-cta">
+  <div class="inner">
+    <h2>Need Freight<br><em>Moved?</em></h2>
+    <p>Tell us your route and cargo. Quote within 2 hours. Available 7 days a week.</p>
+    <div class="form-row">
+      <input class="form-input" placeholder="Origin city" />
+      <input class="form-input" placeholder="Destination city" />
+      <a href="#" class="btn-primary">Get Quote →</a>
+    </div>
+  </div>
+</div>
+
+<div class="kmh-footer">
+  <div class="kmh-credit">Built by <a href="https://khammediahouse.com">Kham Media House</a></div>
+  <div class="kmh-tagline">Turning Expertise Into Visible Authority.</div>
+</div>
+
+</body>
+</html>
